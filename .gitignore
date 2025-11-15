@@ -1,0 +1,10 @@
+backend/node_modules/
+dashboard/node_modules/
+frontend/node_modules/
+
+backend/.env
+dashboard/.env
+frontend/.env
+
+dashboard/build/
+frontend/build/
