@@ -22,7 +22,7 @@ function Team() {
         </div>
         <div className="col-6 p-3">
           <p>
-           "A final-year B.Tech Computer Science student with hands-on experience in MERN stack development and strong problem-solving skills in Data Structures and Algorithms. Interested in building scalable web applications and learning emerging technologies."
+         Computer Science graduate and Full Stack MERN Developer with hands-on experience in building modern web applications using React.js, Next.js, Node.js, Express.js, and MongoDB. Passionate about backend development, AI-powered applications, and writing clean, scalable code while continuously learning new technologies.
           </p>
           <p>
            actively exploring AI-based applications. Member of [MVIET College/ coding club / GDSC / IEEE / any group if applicable]. 

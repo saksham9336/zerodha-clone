@@ -1,44 +1,51 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
-const router = express.Router();
 const User = require("../model/UserModel");
 
+const router = express.Router();
+
+// SIGNUP
 router.post("/signup", async (req, res) => {
   try {
-    let { email, password } = req.body;
+    const { email, password } = req.body;
 
-    password = await bcrypt.hash(password, 10);
+    const exists = await User.findOne({ email });
+    if (exists) {
+      return res.status(400).json({ success: false, msg: "Email already registered" });
+    }
 
-    const newUser = new User({ email, password });
-    await newUser.save();
+    const hashed = await bcrypt.hash(password, 10);
+    await User.create({ email, password: hashed });
 
-    res.json({ msg: "Signup successful" });
+    res.json({ success: true, msg: "Account created successfully!" });
   } catch (err) {
-    console.log(err);
-    res.status(500).json({ msg: "Signup failed" });
+    console.error(err);
+    res.status(500).json({ success: false, msg: "Signup failed" });
   }
 });
 
+// LOGIN
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
-    if (!user) return res.status(400).json({ msg: "User not found" });
+    if (!user) return res.status(400).json({ success: false, msg: "User not found" });
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ msg: "Wrong password" });
+    if (!isMatch) return res.status(400).json({ success: false, msg: "Wrong password" });
 
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "7d",
-    });
+    const token = jwt.sign(
+      { userId: user._id, email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "7d" }
+    );
 
-    res.json({ msg: "Login successful", token });
+    res.json({ success: true, token, email: user.email });
   } catch (err) {
-    console.log(err);
-    res.status(500).json({ msg: "Login error" });
+    console.error(err);
+    res.status(500).json({ success: false, msg: "Login error" });
   }
 });
 
