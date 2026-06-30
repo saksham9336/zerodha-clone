@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.css';
 import HomePage from './landing_page/home/HomePage';
+import ForgotPassword from './landing_page/login/ForgotPassword';
 import Signup from './landing_page/signup/Signup';
 import Login from './landing_page/login/login';       
 import AboutPage from './landing_page/about/AboutPage';
@@ -26,6 +27,7 @@ root.render(
       <Route path="/pricing" element={<PricingPage />} />
       <Route path="/support" element={<SupportPage />} />
       <Route path="*" element={<NotFound />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
     </Routes>
     <Footer />
   </BrowserRouter>

@@ -1,10 +1,12 @@
 const { Schema } = require('mongoose');
 
 const OrdersSchema = new Schema({
-    name: String,
-    qty: Number,
-    price: Number,
-    model: String,
+  userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+  name: String,
+  qty: Number,
+  price: Number,
+  mode: String,        // BUY ya SELL
+  createdAt: { type: Date, default: Date.now },
 });
 
 module.exports = { OrdersSchema };

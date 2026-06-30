@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+const fundsRoutes = require("./routes/funds");  
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -13,7 +14,7 @@ const authRoutes = require("./routes/auth");
 const authMiddleware = require("./middleware/authMiddleware");
 
 const PORT = process.env.PORT || 3002;
-const uri = process.env.MONGO_URI;   // MONGO_URL — .env se match
+const uri = process.env.MONGO_URI;
 
 const app = express();
 
@@ -22,6 +23,8 @@ app.use(bodyParser.json());
 
 // Auth Routes
 app.use("/auth", authRoutes);
+
+app.use("/funds", fundsRoutes);
 
 // Holdings
 app.get("/allHoldings", async (req, res) => {
@@ -36,15 +39,23 @@ app.get("/allPositions", async (req, res) => {
 });
 
 // New Order
-app.post("/newOrder", async (req, res) => {
+app.post("/newOrder", authMiddleware, async (req, res) => {
   let newOrder = new OrdersModel({
+    userId: req.userId,
     name: req.body.name,
     qty: req.body.qty,
     price: req.body.price,
     mode: req.body.mode,
   });
-  newOrder.save();
-  res.send("Order saved!");
+
+  await newOrder.save();
+  res.json({ success: true, msg: "Order saved!" });
+});
+
+// Get all orders for logged-in user
+app.get("/allOrders", authMiddleware, async (req, res) => {
+  let allOrders = await OrdersModel.find({ userId: req.userId });
+  res.json(allOrders);
 });
 
 // DB + Server Start

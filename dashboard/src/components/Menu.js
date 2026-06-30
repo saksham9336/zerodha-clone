@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Menu = () => {
   const [selectedMenu, setSelectedMenu] = useState(0);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [userEmail, setUserEmail] = useState("");
+  const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -12,7 +13,19 @@ const Menu = () => {
     if (email) setUserEmail(email);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setIsProfileDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   const handleMenuClick = (index) => setSelectedMenu(index);
+
+  const handleProfileClick = () => setIsProfileDropdownOpen(!isProfileDropdownOpen);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -20,14 +33,13 @@ const Menu = () => {
     window.location.href = "http://localhost:3000/login";
   };
 
-  const menuClass = "menu";
-  const activeMenuClass = "menu selected";
-
-  // Email se initials nikalo avatar ke liye
   const getAvatar = () => {
     if (!userEmail) return "ZU";
     return userEmail.substring(0, 2).toUpperCase();
   };
+
+  const menuClass = "menu";
+  const activeMenuClass = "menu selected";
 
   return (
     <div className="menu-container">
@@ -66,27 +78,86 @@ const Menu = () => {
           </li>
         </ul>
         <hr />
-        <div className="profile" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}>
-          <div className="avatar">{getAvatar()}</div>
-          <p className="username">{userEmail || "User"}</p>
-        </div>
 
-        {isProfileDropdownOpen && (
-          <div style={{
-            background: "#fff", border: "1px solid #ddd", borderRadius: "5px",
-            padding: "8px", marginTop: "5px", cursor: "pointer"
-          }}>
-            <p
-              onClick={handleLogout}
-              style={{ margin: 0, padding: "6px 10px", color: "red", fontWeight: "bold" }}
-            >
-              🚪 Logout
-            </p>
+        <div style={{ position: "relative" }} ref={dropdownRef}>
+          <div
+            className="profile"
+            onClick={handleProfileClick}
+            style={{ cursor: "pointer" }}
+          >
+            <div className="avatar" style={avatarStyle}>{getAvatar()}</div>
+            <p className="username">{userEmail || "User"}</p>
           </div>
-        )}
+
+          {isProfileDropdownOpen && (
+            <div style={dropdownStyle}>
+              <div style={dropdownHeaderStyle}>
+                <div className="avatar" style={{ ...avatarStyle, margin: "0 auto 8px" }}>
+                  {getAvatar()}
+                </div>
+                <p style={{ margin: 0, fontWeight: 600, fontSize: "14px", wordBreak: "break-word" }}>
+                  {userEmail}
+                </p>
+              </div>
+              <div style={dividerStyle} />
+              <div onClick={handleLogout} style={logoutItemStyle}>
+                <span style={{ marginRight: "8px" }}>⏻</span> Logout
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
+};
+
+const avatarStyle = {
+  backgroundColor: "#387ed1",
+  color: "#fff",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  borderRadius: "50%",
+  width: "36px",
+  height: "36px",
+  fontSize: "13px",
+  fontWeight: "600",
+};
+
+const dropdownStyle = {
+  position: "absolute",
+  top: "50px",
+  right: "0",
+  background: "#fff",
+  borderRadius: "6px",
+  boxShadow: "0 2px 12px rgba(0,0,0,0.15)",
+  width: "220px",
+  padding: "16px",
+  zIndex: 1000,
+};
+
+const dropdownHeaderStyle = {
+  textAlign: "center",
+  paddingBottom: "10px",
+};
+
+const dividerStyle = {
+  height: "1px",
+  background: "#eee",
+  margin: "8px 0",
+};
+
+const logoutItemStyle = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: "10px",
+  borderRadius: "4px",
+  color: "#e74c3c",
+  fontWeight: "500",
+  fontSize: "14px",
+  cursor: "pointer",
+  transition: "background 0.2s",
 };
 
 export default Menu;

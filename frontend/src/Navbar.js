@@ -4,42 +4,71 @@ import { Link } from "react-router-dom";
 function Navbar() {
   return (
 
-      <nav class="navbar navbar-expand-lg  border-bottom" style={{ backgroundColor: "#FFF"}}>
-        <div class="container p-2">
+      <nav class="navbar navbar-expand-lg border-bottom" style={{ backgroundColor: "#FFF", padding: "10px 0" }}>
+        <div class="container p-2 d-flex align-items-center justify-content-between">
           <Link class="navbar-brand" to="/">
-            <img src="media/images/logo.svg" style={{width: "25%"}} alt="Logo" />  </Link>
+            <img src="media/images/logo.svg" style={{width: "120px"}} alt="Logo" />
+          </Link>
+
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            
-              
-            <form class="d-flex" role="search">
-              <ul class="navbar-nav  mb-lg-0">
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent" style={{ flexGrow: 0 }}>
+            <ul class="navbar-nav mb-lg-0 align-items-center" style={{ flexDirection: "row", gap: "30px" }}>
               <li class="nav-item">
-                <Link class="nav-link active" aria-current="page" to="/signup">Signup</Link>
+                <Link class="nav-link" style={navLinkStyle} to="/about">About</Link>
               </li>
               <li class="nav-item">
-                <Link class="nav-link active" to="/about">About</Link>
+                <Link class="nav-link" style={navLinkStyle} to="/products">Products</Link>
               </li>
-               <li class="nav-item">
-                <Link class="nav-link active" to="/products">Product</Link>
+              <li class="nav-item">
+                <Link class="nav-link" style={navLinkStyle} to="/pricing">Pricing</Link>
               </li>
-               <li class="nav-item">
-                <Link class="nav-link active" to="/pricing">Pricing</Link>
+              <li class="nav-item">
+                <Link class="nav-link" style={navLinkStyle} to="/support">Support</Link>
               </li>
-               <li class="nav-item">
-                <Link class="nav-link active" to="/support">Support</Link>
+
+              <li class="nav-item">
+                <Link to="/login" style={loginBtnStyle}>Login</Link>
               </li>
-              
-             
+              <li class="nav-item">
+                <Link to="/signup" style={signupBtnStyle}>Signup</Link>
+              </li>
             </ul>
-             </form>
           </div>
         </div>
       </nav>
     
   );
 }
+
+const navLinkStyle = {
+  color: "#53555c",
+  fontSize: "15px",
+  fontWeight: "500",
+  textDecoration: "none",
+};
+
+const loginBtnStyle = {
+  color: "#387ed1",
+  border: "1px solid #387ed1",
+  padding: "7px 20px",
+  borderRadius: "3px",
+  fontSize: "14px",
+  fontWeight: "500",
+  textDecoration: "none",
+};
+
+const signupBtnStyle = {
+  color: "#fff",
+  backgroundColor: "#387ed1",
+  border: "1px solid #387ed1",
+  padding: "7px 20px",
+  borderRadius: "3px",
+  fontSize: "14px",
+  fontWeight: "500",
+  textDecoration: "none",
+};
 
 export default Navbar;

@@ -50,3 +50,31 @@ router.post("/login", async (req, res) => {
 });
 
 module.exports = router;
+
+// Reset Password
+router.post("/reset-password", async (req, res) => {
+  try {
+    const { email, newPassword } = req.body;
+
+    if (!email || !newPassword) {
+      return res.status(400).json({ success: false, msg: "Email and new password required" });
+    }
+    if (newPassword.length < 6) {
+      return res.status(400).json({ success: false, msg: "Password must be at least 6 characters" });
+    }
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ success: false, msg: "No account found with this email" });
+    }
+
+    const hashed = await bcrypt.hash(newPassword, 10);
+    user.password = hashed;
+    await user.save();
+
+    res.json({ success: true, msg: "Password reset successful!" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, msg: "Something went wrong" });
+  }
+});

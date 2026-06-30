@@ -32,8 +32,12 @@ const Positions = () => {
               <tr><td colSpan="7" style={{ textAlign: "center" }}>No positions found</td></tr>
             ) : (
               allPositions.map((stock, index) => {
-                const curValue = stock.price * stock.qty;
-                const isProfit = curValue - stock.avg * stock.qty >= 0.0;
+                const avg = stock.avg || 0;
+                const price = stock.price || 0;
+                const qty = stock.qty || 0;
+
+                const curValue = price * qty;
+                const isProfit = curValue - avg * qty >= 0.0;
                 const profClass = isProfit ? "profit" : "loss";
                 const dayClass = stock.isLoss ? "loss" : "profit";
 
@@ -41,11 +45,11 @@ const Positions = () => {
                   <tr key={index}>
                     <td>{stock.product}</td>
                     <td>{stock.name}</td>
-                    <td>{stock.qty}</td>
-                    <td>{stock.avg.toFixed(2)}</td>
-                    <td>{stock.price.toFixed(2)}</td>
+                    <td>{qty}</td>
+                    <td>{avg.toFixed(2)}</td>
+                    <td>{price.toFixed(2)}</td>
                     <td className={profClass}>
-                      {(curValue - stock.avg * stock.qty).toFixed(2)}
+                      {(curValue - avg * qty).toFixed(2)}
                     </td>
                     <td className={dayClass}>{stock.day}</td>
                   </tr>

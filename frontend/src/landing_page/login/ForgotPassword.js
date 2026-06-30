@@ -2,71 +2,72 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function Signup() {
+function ForgotPassword() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const signup = async () => {
+  const resetPassword = async () => {
     setError("");
     setSuccess("");
 
-    if (!email || !password || !confirmPassword) {
+    if (!email || !newPassword || !confirmPassword) {
       setError("Please fill all fields");
       return;
     }
-    if (password.length < 6) {
+    if (newPassword.length < 6) {
       setError("Password must be at least 6 characters");
       return;
     }
-    if (password !== confirmPassword) {
+    if (newPassword !== confirmPassword) {
       setError("Passwords do not match");
       return;
     }
 
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:3002/auth/signup", {
+      const res = await axios.post("http://localhost:3002/auth/reset-password", {
         email,
-        password,
+        newPassword,
       });
 
       if (res.data.success) {
-        setSuccess("Account created! Redirecting to login...");
+        setSuccess("Password reset successful! Redirecting to login...");
         setTimeout(() => navigate("/login"), 1500);
       } else {
         setError(res.data.msg);
       }
     } catch (err) {
-      setError("Something went wrong. Try again.");
+      setError(err.response?.data?.msg || "Something went wrong. Try again.");
     } finally {
       setLoading(false);
     }
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter") signup();
+    if (e.key === "Enter") resetPassword();
   };
 
   return (
     <div style={styles.page}>
       <div style={styles.card}>
         <div style={styles.logoRow}>
-          <div style={styles.logoMark}>Z</div>
-          <span style={styles.logoText}>Zeodha</span>
+          <div style={styles.logoMark}>K</div>
+          <span style={styles.logoText}>Kite</span>
         </div>
 
-        <h2 style={styles.heading}>Create your account</h2>
+        <h2 style={styles.heading}>Reset your password</h2>
+        <p style={styles.subText}>Enter your registered email and a new password</p>
 
         <div style={styles.formGroup}>
           <label style={styles.label}>Email</label>
           <input
             type="email"
-            placeholder="Enter your email"
+            placeholder="Enter your registered email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             onKeyDown={handleKeyDown}
@@ -75,22 +76,22 @@ function Signup() {
         </div>
 
         <div style={styles.formGroup}>
-          <label style={styles.label}>Password</label>
+          <label style={styles.label}>New Password</label>
           <input
             type="password"
-            placeholder="Create a password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter new password"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
             onKeyDown={handleKeyDown}
             style={styles.input}
           />
         </div>
 
         <div style={styles.formGroup}>
-          <label style={styles.label}>Confirm Password</label>
+          <label style={styles.label}>Confirm New Password</label>
           <input
             type="password"
-            placeholder="Re-enter your password"
+            placeholder="Re-enter new password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             onKeyDown={handleKeyDown}
@@ -101,12 +102,12 @@ function Signup() {
         {error && <p style={styles.error}>{error}</p>}
         {success && <p style={styles.success}>{success}</p>}
 
-        <button onClick={signup} style={styles.button} disabled={loading}>
-          {loading ? "Creating account..." : "Create Account"}
+        <button onClick={resetPassword} style={styles.button} disabled={loading}>
+          {loading ? "Resetting..." : "Reset Password"}
         </button>
 
         <p style={styles.footerText}>
-          Already have an account? <a href="/login" style={styles.link}>Login here</a>
+          Remember your password? <a href="/login" style={styles.link}>Login here</a>
         </p>
       </div>
 
@@ -139,7 +140,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     gap: "10px",
-    marginBottom: "30px",
+    marginBottom: "20px",
   },
   logoMark: {
     width: "36px",
@@ -162,7 +163,12 @@ const styles = {
     fontSize: "18px",
     fontWeight: "400",
     color: "#333",
-    marginBottom: "25px",
+    marginBottom: "6px",
+  },
+  subText: {
+    fontSize: "13px",
+    color: "#777",
+    marginBottom: "20px",
   },
   formGroup: {
     marginBottom: "20px",
@@ -222,4 +228,4 @@ const styles = {
   },
 };
 
-export default Signup;
+export default ForgotPassword;
