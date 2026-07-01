@@ -51,8 +51,8 @@ const navLinkStyle = {
 };
 
 const loginBtnStyle = {
-  color: "#387ed1",
-  border: "1px solid #387ed1",
+  color: "#6C5CE7",
+  border: "1px solid #6C5CE7",
   padding: "7px 20px",
   borderRadius: "3px",
   fontSize: "14px",
@@ -62,8 +62,8 @@ const loginBtnStyle = {
 
 const signupBtnStyle = {
   color: "#fff",
-  backgroundColor: "#387ed1",
-  border: "1px solid #387ed1",
+  backgroundColor: "#6C5CE7",
+  border: "1px solid #6C5CE7",
   padding: "7px 20px",
   borderRadius: "3px",
   fontSize: "14px",

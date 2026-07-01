@@ -1,0 +1,20 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7C6CF0"/>
+      <stop offset="100%" stop-color="#5B4BC4"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="200" height="200" rx="44" fill="url(#bgGrad)"/>
+
+  <!-- ascending bars -->
+  <rect x="46" y="128" width="20" height="34" rx="4" fill="#FFFFFF" opacity="0.55"/>
+  <rect x="76" y="108" width="20" height="54" rx="4" fill="#FFFFFF" opacity="0.7"/>
+  <rect x="106" y="82" width="20" height="80" rx="4" fill="#FFFFFF" opacity="0.85"/>
+  <rect x="136" y="56" width="20" height="106" rx="4" fill="#FFFFFF"/>
+
+  <!-- upward trend line -->
+  <polyline points="44,140 82,104 112,120 158,50" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <polygon points="158,50 176,44 164,64" fill="#FFFFFF"/>
+</svg>

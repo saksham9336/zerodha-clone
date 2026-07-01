@@ -30,11 +30,11 @@ function CreateTicket() {
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Charges at Zerodha
+            Charges at TradeVista
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Zerodha IDFC FIRST Bank 3-in-1 Account
+            TradeVista IDFC FIRST Bank 3-in-1 Account
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
@@ -44,7 +44,7 @@ function CreateTicket() {
         </div>
         <div className="col-4 p-5 mt-2 mb-2">
           <h4 className="">
-            <i class="fa fa-user" aria-hidden="true"></i> Your Zerodha Account
+            <i class="fa fa-user" aria-hidden="true"></i> Your TradeVista Account
           </h4>
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
             Login Credentials
@@ -69,14 +69,14 @@ function CreateTicket() {
         </div>
         <div className="col-4 p-5 mt-2 mb-2">
           <h4 className="">
-            <i class="fa fa-bar-chart" aria-hidden="true"></i> Yoyr Zerodha Account
+            <i class="fa fa-bar-chart" aria-hidden="true"></i> Your TradeVista Account
           </h4>
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
             Margin/leverage,Product and Order types
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Kite Web and Mobile
+            Vista Web and Mobile
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
@@ -92,7 +92,7 @@ function CreateTicket() {
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Kite API
+            Vista API
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>

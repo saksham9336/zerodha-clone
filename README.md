@@ -1,10 +1,8 @@
-# Zerodha Clone — Full Stack Trading Platform
+# TradeVista — Full Stack Trading Platform
 
-A full-stack clone of Zerodha's trading platform built with the MERN stack, featuring a marketing website, a secure authentication system, and a fully functional trading dashboard with real-time-style market simulation.
+A full-stack investment & trading platform built with the MERN stack, featuring a marketing website, a secure authentication system, and a fully functional trading dashboard with real-time-style market simulation.
 
 🔗 **Live Demo:** 
-📂 **Repository:** [github.com/saksham9336](https://github.com/saksham9336)
-
 ---
 
 ## Overview

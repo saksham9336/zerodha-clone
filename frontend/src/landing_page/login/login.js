@@ -44,8 +44,8 @@ function Login() {
     <div style={styles.page}>
       <div style={styles.card}>
         <div style={styles.logoRow}>
-          <div style={styles.logoMark}>K</div>
-          <span style={styles.logoText}>Kite</span>
+          <div style={styles.logoMark}>Z</div>
+        <span style={styles.logoText}>Vista</span>
         </div>
 
         <h2 style={styles.heading}>Login</h2>
@@ -85,12 +85,12 @@ function Login() {
         </p>
 
         <p style={styles.footerText}>
-          New to Kite? <a href="/signup" style={styles.link}>Create an account</a>
+           New to Vista? <a href="/signup" style={styles.link}>Create an account</a>
         </p>
       </div>
 
       <p style={styles.bottomText}>
-        © 2026 Zerodha Clone — Built for learning purposes
+         © 2026 TradeVista — Built for learning purposes
       </p>
     </div>
   );
@@ -108,7 +108,8 @@ const styles = {
   },
   card: {
     background: "#fff",
-    width: "380px",
+    width: "90%",
+    maxWidth: "380px",
     padding: "40px 35px",
     borderRadius: "4px",
     boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
@@ -123,7 +124,7 @@ const styles = {
   logoMark: {
     width: "36px",
     height: "36px",
-    background: "#387ed1",
+    background: "#6C5CE7",
     color: "#fff",
     display: "flex",
     alignItems: "center",
@@ -170,7 +171,7 @@ const styles = {
   button: {
     width: "100%",
     padding: "12px",
-    backgroundColor: "#387ed1",
+    backgroundColor: "#6C5CE7",
     color: "#fff",
     border: "none",
     borderRadius: "3px",
@@ -190,7 +191,7 @@ const styles = {
     textAlign: "center",
   },
   link: {
-    color: "#387ed1",
+    color: "#6C5CE7",
     textDecoration: "none",
     fontWeight: "500",
   },

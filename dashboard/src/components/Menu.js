@@ -43,7 +43,11 @@ const Menu = () => {
 
   return (
     <div className="menu-container">
-      <img src="logo.png" style={{ width: "50px" }} alt="logo" />
+     <img
+  src="logo.svg"
+  style={{ width: "40px", height: "40px", objectFit: "contain", flexShrink: 0 }}
+  alt="TradeVista"
+/>
       <div className="menus">
         <ul>
           <li>
@@ -112,7 +116,7 @@ const Menu = () => {
 };
 
 const avatarStyle = {
-  backgroundColor: "#387ed1",
+  backgroundColor: "#6C5CE7",
   color: "#fff",
   display: "flex",
   alignItems: "center",

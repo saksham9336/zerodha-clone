@@ -2,14 +2,14 @@ import React from "react";
 
 const appsList = [
   {
-    name: "Kite",
+    name: "Vista",
     desc: "Ultra-fast trading platform with sleek UI and powerful tools.",
-    link: "https://kite.zerodha.com",
+    link: "https://vista.tradevista.in",
   },
   {
     name: "Coin",
     desc: "Invest in mutual funds directly without commissions.",
-    link: "https://coin.zerodha.com",
+    link: "https://coin.tradevista.in",
   },
   {
     name: "Streak",
@@ -36,9 +36,8 @@ const appsList = [
 const Apps = () => {
   return (
     <div className="apps-page">
-      <h2>Explore Zerodha Apps</h2>
-      <p className="apps-subtitle">
-        All investing & trading apps linked with your Zerodha account.
+      <h2>Explore TradeVista Apps</h2>
+      <p className="apps-subtitle"> All investing & trading apps linked with your TradeVista account.
       </p>
 
       <div className="app-grid">
