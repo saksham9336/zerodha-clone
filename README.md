@@ -2,7 +2,7 @@
 
 A full-stack investment & trading platform built with the MERN stack, featuring a marketing website, a secure authentication system, and a fully functional trading dashboard with real-time-style market simulation.
 
-🔗 **Live Demo:** 
+🔗 **Live Demo:** https://tradevista-frontend-phi.vercel.app/login
 ---
 
 ## Overview
