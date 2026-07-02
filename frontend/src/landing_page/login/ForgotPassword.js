@@ -30,7 +30,7 @@ function ForgotPassword() {
 
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:3002/auth/reset-password", {
+      const res = await axios.post((process.env.REACT_APP_API_URL + "/auth/reset-password"), {
         email,
         newPassword,
       });

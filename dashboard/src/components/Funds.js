@@ -16,7 +16,7 @@ const Funds = () => {
 
   const fetchFunds = () => {
     axios
-      .get("http://localhost:3002/funds", {
+      .get((process.env.REACT_APP_API_URL + "/funds"), {
         headers: { authorization: token },
       })
       .then((res) => {
@@ -37,7 +37,7 @@ const Funds = () => {
     }
     axios
       .post(
-        "http://localhost:3002/funds/add",
+        (process.env.REACT_APP_API_URL + "/funds/add"),
         { amount },
         { headers: { authorization: token } }
       )
@@ -59,7 +59,7 @@ const Funds = () => {
     }
     axios
       .post(
-        "http://localhost:3002/funds/withdraw",
+        (process.env.REACT_APP_API_URL + "/funds/withdraw"),
         { amount },
         { headers: { authorization: token } }
       )

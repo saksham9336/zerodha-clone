@@ -17,7 +17,7 @@ function Login() {
     }
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:3002/auth/login", {
+      const res = await axios.post((process.env.REACT_APP_API_URL + "/auth/login"), {
         email,
         password,
       });
@@ -25,7 +25,7 @@ function Login() {
       if (res.data.success) {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("userEmail", res.data.email);
-        window.location.href = `http://localhost:3001?token=${res.data.token}&email=${encodeURIComponent(res.data.email)}`;
+        window.location.href = `${process.env.REACT_APP_DASHBOARD_URL}?token=${res.data.token}&email=${encodeURIComponent(res.data.email)}`;
       } else {
         setError(res.data.msg);
       }

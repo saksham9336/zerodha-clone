@@ -30,7 +30,7 @@ function Signup() {
 
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:3002/auth/signup", {
+      const res = await axios.post((process.env.REACT_APP_API_URL + "/auth/signup"), {
         email,
         password,
       });

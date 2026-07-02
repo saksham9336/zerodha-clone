@@ -11,7 +11,7 @@ const Summary = () => {
     const email = localStorage.getItem("userEmail");
     if (email) setUserEmail(email.split("@")[0]); // naam jaisa dikhega
 
-    axios.get("http://localhost:3002/allHoldings").then((res) => {
+    axios.get((process.env.REACT_APP_API_URL + "/allHoldings")).then((res) => {
       const holdings = res.data;
       setHoldingsCount(holdings.length);
 
